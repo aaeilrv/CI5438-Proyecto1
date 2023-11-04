@@ -233,7 +233,7 @@ La segunda sesión se corrió con los siguientes parámnetos:
 
 A las 90.000 iteraciones se obtuvo un margen de error de 0.675%. A continuación se muestra la gráfica de esta sesión.
 
-![Grafica2](/graficos/Grafica2.jpg "Grafica2")
+![Grafica2](/graficos/Grafica2.png "Grafica2")
 
 La sesión tomó 53min con 28 segundos.
 
