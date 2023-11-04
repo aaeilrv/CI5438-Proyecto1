@@ -1,7 +1,4 @@
-
 # Informe Proyecto I - CI5438
-
-  
 
 ## 1 - Detalles de la implementación
 
@@ -13,55 +10,88 @@ $$
 
 A su vez, se hizo uso de la función de pérdida cuadrática $L^2(y,\hat{y}) = (y - \hat{y})^2$  tal como solicitó el enunciado. Para la condición de convergencia se seleccionó **500** como la cantidad máxima de iteraciones y un épsilon igual a **0.15**.
 
-Se creó una función lineal de la forma $f(x) = w_1 x_1 + w_2 x_2 + w_0$ a manera de comprobar la funcionalidad del algoritmo. Para ella, se hizo uso de la librería *numpy* tanto para calcular los pesos iniciales como los atributos iniciales. Sin embargo, si se desea alterar el número de valores de la función lineal, se puede hacer a través del argumento *size* de *generate_linear_function()*, que se encarga de establecer el tamaño de la misma. Dado que se trata de regresión linear multivariada, el peso $w_0$ se considera no significativo para nuestro problema.
+Se creó una función lineal de la forma $f(x) = w_1 x_1 + w_2 x_2 + w_0$ a manera de comprobar la funcionalidad del algoritmo. Para ella, se hizo uso de la librería *numpy* tanto para calcular los pesos iniciales como los atributos iniciales. Sin embargo, si se desea alterar el número de valores de la función lineal, se puede hacer a través del argumento *size* de *generate_linear_function()*, que se encarga de establecer el tamaño de la misma.
+
+Dado que se trata de regresión linear multivariada, el valor $x_0$ para cada $w_0$ se tomó igual a 1, tal como fue explicado en clase. Por ende, los resultados obtenidos para $w_0$ no son tomados en cuenta al momento de conseguir una hipótesis.
 
 Al generar el descenso de gradiente de $f(x)$, se obtuvieron pesos estimados con los cuales posteriormente se realizó una comparación con los pesos reales para obtener el margen de error de cada uno de ellos.
 
-Se realizaron distintas corridas con $f(x)$, además se crearon otras funciones con mayor cantidad de coeficientes. A continuación, se muestra cada corrida con el margen de error obtenido:
+Se realizaron distintas corridas con $f(x)$. Además, se crearon otras funciones con mayor cantidad de coeficientes. A continuación, se muestra cada corrida con el tiempo de ejecución y el margen de error obtenido:
 
 |                    | $X_2$ |$X_1$ |$X_0$ |
 |  :----:            |:----: |:----:|:----:|
 | Pesos reales       | -63   | 41   | -28  |
 | Pesos estimados    |-63.35 |40.62 |0.714 |
-| Porcentaje de error|0.56% |40.62%|102.55%|
-(insertar imagen)
+| Porcentaje de error|0.56%  |0.92%|102.55%|
+
+Tiempo de cálculo: 0.3s
+![F1](/graficos/F1Lineal.png "F1")
+
 
 |                    | $X_2$ |$X_1$ |$X_0$ |
 |  :----:            |:----: |:----:|:----:|
 | Pesos reales       | -32   | -4   | -14  |
 | Pesos estimados    |-32.15 |-4.17 |0.56  |
 | Porcentaje de error|0.49% |4.32%|104.04%|
-(insertar imagen)
+
+Tiempo de cálculo: 0.3s
+
+![F2](/graficos/F2Lineal.png "F2")
 
 |                    | $X_3$  |$X_2$ | $X_1$| $X_0$ |
 |     :----:         | :----: |:----:|:----:| :----:|
 | Pesos reales       |-91     |96    | 27   | -77   |
 | Pesos estimados    |-89.83  |93.73 |26.92 | 0.77  |
 | Porcentaje de error|  1.29% | 2.36%| 0.31%|  101% |
-(insertar imagen)
+
+Tiempo de cálculo: 0.4s
+
+![F3](/graficos/F3Lineal.png "F3")
 
 |                    | $X_3$  |$X_2$ | $X_1$| $X_0$ |
 | :----:             | :----: |:----:|:----:| :----:|
 | Pesos reales       |99      |-98   |-24   |  50   |
 | Pesos estimados    |99.41   |-97.76|-23.80| 1.39  |
 | Porcentaje de error|  0.42% | 0.24%| 0.84%| 97.21% |
-(insertar imagen)
+
+Tiempo de cálculo: 0.3s
+
+![F4](/graficos/F4Lineal.png "F4")
 
 |                    | $X_4$  |$X_3$ |$X_2$ | $X_1$ | $X_0$| 
 | :----:             | :----: |:----:|:----:| :----:|:----:|
 | Pesos reales       |  53    |-18   |16    |  -3   |  31  |
 | Pesos estimados    |  43.50 |-11.26|-21.89| -2.25 | 0.81 |
 | Porcentaje de error|  17.91%|37.46%|36.83%|   25% |97.37%|
-(insertar imagen)
+
+Tiempo de cálculo: 0.4s
+
+![F5](/graficos/F5Lineal.png "F5")
 
 |                    | $X_4$  |$X_3$ |$X_2$ | $X_1$ | $X_0$| 
 | :----:             | :----: |:----:|:----:| :----:|:----:|
-| Pesos reales       |  88    | 44   | -76  |  38   |  95  |
-| Pesos estimados    |  90.41 |39.55 |-74.04| 39.16 | 1.60 |
-| Porcentaje de error|  2.73% |10.11%| 2.57%| 3.06% |98.32%|
-(insertar imagen)
+| Pesos reales       |  97    | 72   | 22  |  42   |  1  |
+| Pesos estimados    |  96.82 |72.05 |22.15| 41.89 | 2.19 |
+| Porcentaje de error|  1.83% |7.10%| 6.86%| 2.45% |1.20%|
 
-Como se puede notar, el porcentaje de error de $X_0$ es muy elevado en todos los casos, especialmente con respect a las otras $X_i$ de la misma corrida. Esto es causa de que, en la función *gradient_descent()* implementada, no se tuviese un trato distinto con este valor al momento de calcular la derivada parcial de $w$. En nuestro caso, optamos por ignorar el valor de $X_0$ al considerar la precisión de los pesos estimados ya que, como dijimos previamente, el mismo no es significativo al tratarse de funciones lineales multivaradas.  (VER SI EN VEZ DE ESTO SE PONE W_0 = 0 PARA TODO)
+Tiempo de cálculo: 0.3s
+
+![F6](/graficos/F6Lineal.png "F6")
+
+Como se puede notar, el porcentaje de error de $X_0$ es muy elevado en todos los casos excepto la última función lineal, siendo esto producido por tomar $X_0 = 1$ para cada caso. Sin embargo, como ya fue explicado anteriormente, el valor estimado de este peso no es tomado en cuenta al momento de hallar una hipótesis para las funciones lineales multivariadas.
+
+#### 1.1 Especificaciones técnicas
+Los equipos utilizados para llevar a cabo este proyecto tienen las siguientes características:
+
+1. Computador I:
+- MD Ryzen 5 5600H with Radeon Graphics
+- 8gb RAM
+- Windows 11
+
+2. Computador 2:
+- Intel i3 11va generación
+- 8gb RAM
+- Windows 11
 
 ## 2 - Preprocesamiento de Datos
 Se utilizó el conjunto de datos `CarDekho.csv` suministrado. En él, se encontraron los siguientes casos:
@@ -120,8 +150,10 @@ También se decidió eliminar las columnas *Max Power* y *Max Torque* vista la d
 <sub>**Nota:** Este paso se realizó antes del manejo de valores categóricos. Sin embargo, se menciona de número 2.3 para seguir el hilo de la descripción dada en el enunciado del proyecto.</sub>
 
 Después de haber completado los valores nulos existentes en el dataframe, se creó un boxplot para conocer el rango de valores de cada una de las columnas numéricas:
-(IMAGEN BOXPLOT1)
-De ella, es notorio que las columnas *Prices* y *Kilometer* tienen valores muy elevados con respecto a las otras columnas. Es por ende que se acudió a una normalización de todas las columnas numéricas para que sus valores estuviesen en el rango [0, 1]. Para ello, se creó una función *normalize_column()* que siguió las instrucciones dadas en el enunciado del proyecto:
+
+![Boxplot1](/graficos/Boxplot1.png "Boxplot1")
+
+De ella, es notorio que las columnas *Price* y *Kilometer* tienen valores muy elevados con respecto a las otras columnas. Es por ende que se acudió a una normalización de todas las columnas numéricas para que sus valores estuviesen en el rango [0, 1]. Para ello, se creó una función *normalize_column()* que siguió las instrucciones dadas en el enunciado del proyecto:
 
 $$
 X' = \frac{X - X_{min}}{X_{max} - X_{min}}
@@ -131,8 +163,71 @@ Se reemplazaron los valores numéricos de la siguiente manera:
 `df.loc[:, 'nombre_columna'] = normalize_column(df.loc[:, 'nombre_columna'])`
 
 Después de normalizados los valores, se creó otro boxplot:
-(IMAGEN DE BOXPLOT2)
+
+![Boxplot2](/graficos/Boxplot2.png "Boxplot2")
 
 Acá, se puede apreciar que todos los valores están en el rango deseado.
 
+Después de la exhaustiva limpieza realizada, se decidió guardar el nuevo dataframe en un archivo llamado `clean_data.csv` para no alterar el dataframe original.
+
 ## 3 - Entrenamiento del modelo
+
+### 3.1 - Selección del modelo
+
+Para poder hallar un modelo que generara un margen de error pequeño al momento de obtener los precios estimados del vehículo, se decidió escoger todas las posibles combinaciones de 8 y 9 atributos del dataframe. Las razones para escoger estas cantidades fueron el límite de tiempo y la posibilidad de que el modelo estuviese subajustado con menos atributos. Las combinaciones obtenidas fueron guardadas en dos archivos de texto `c8.txt` y `c9.txt` respectivamente.
+
+Luego, se definieron las funciones *model_selection()* y *cross_validation()*, esta segunda tomando los siguientes valores como parámetros:
+* $k$ subconjuntos de partición
+* archivo .txt con combinaciones
+* dos índices $(a, b)$ de la lista de combinaciones para  ser tomados como intervalos.
+
+La función *model_selection()* dividió a los ejemplos en dos partes: conjunto de entrenamiento y de prueba. Además, entrenó con validación cruzada el modelo con un subconjunto de combinaciones pasado como argumento, y finalmente hizo uso del algoritmo de descenso de gradiente.
+
+Se estableció una matriz vectorial $X$ compuesta por los índices de todos atributos originales del dataframe con excepción de las columnas *Price*, *Max Power* y *Max Torque*. A su vez, se asignó $Y$ como el vector correspondiente a la columna *Price* del dataframe.
+
+Finalmente, para escoger el modelo se probaron los siguientes intervalos:
+* **[0, 1079] U [2500, 3120]** para las combinaciones de ocho elementos
+* **[19540, 19640]** para las combinaciones de nueve elementos
+Así como los siguientes parámetros para el descenso de gradiente:
+* tasa de aprendizaje: **0.000002**
+* máximo número de iteraciones: **500**
+* epsilon: **0.15**
+
+Para cada uno de estos intervalos, se obtuvo una mejor combinación encontrada que fue guardada manualmente en el archivo `best.txt`. Posteriormente, las combinaciones que se encontraban en este archivo volvieron a pasar por la selección de modelo pero con parámetros más estrictos:
+* tasa de aprendizaje: **0.0000005**
+* máximo número de iteraciones: **2000**
+* epsilon: **0.15**
+
+Así, finalmente la combinación escogida de atributos para calcular el precio de un vehículo fue la siguiente:
+* Make
+* Model
+* Year
+* Kilometer
+* Fuel Type
+* Transmission
+* Drivetrain
+* Width
+* Seating Capacity
+
+Con un total de 12.4% de margen de error.
+
+### 3.2 - Selección de hipótesis
+Finalmente, para seleccionar una hipótesis, se corrió nuevamente la función de descenso de gradiente, esta vez con $Y$ = *price* y $X$ con los atributos mencionados al final de la última sección.
+
+Los parámetros escogidos en esta oportunidad fueron los siguientes:
+* tasa de aprendizaje: **---**
+* máximo número de iteraciones: **900.000**
+* epsilon: **0.015**
+
+Así, se obtuvo a las 160.000 iteraciones, una convergencia con 0.999% de margen de error. A continuación se muestra su gráfica.
+
+![Grafica1](/graficos/Grafica1.jpg "Grafica1")
+
+La corrida para obtener la hipótesis tomó 84min con 51 segundos.
+
+## 5 - Conclusiones
+En general, los resultados obtenidos al calcular el precio de vehículos fueron satisfactorios. Se estimaba un porcentaje más alto de error dado el margen de error de los atributos así como haciendo una comparación con el margen de error de las funciones lineales creadas al inicio del proyecto.
+Para proyectos futuros o próximas visitas a este mismo, los autores de este proyecto plantean hacer los siguientes cambios a sus evaluaciones:
+* Utilizar el mismo modelo de atributos cambiando la tasa de aprendizaje así como el epsilon, ajustándolos a valores tanto mayores como menores para ver si es posible obtener un menor margen de error.
+* Utilizar distintos modelos, con más o menos atributos, pero manteniendo los valores de la tasa de aprendizaje y el epsilon, para comparar los márgenes de error con respecto al modelo utilizado.
+* Separar los conjuntos de datos en conjuntos de entrenamiento y prueba con distintos porcentajes: 70% y 30%, 60% y 40%, o 50% cada uno.
