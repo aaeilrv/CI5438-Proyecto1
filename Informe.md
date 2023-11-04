@@ -25,6 +25,7 @@ Se realizaron distintas corridas con $f(x)$. Además, se crearon otras funciones
 | Porcentaje de error|0.56%  |0.92%|102.55%|
 
 Tiempo de cálculo: 0.3s
+
 ![F1](/graficos/F1Lineal.png "F1")
 
 
