@@ -2,13 +2,13 @@
 
 ## 1 - Detalles de la implementación
 
-Para hacer el algoritmo de descenso de gradiente, se utilizó la fórmula dada en clase para el caso multivariado con una tasa de aprendizaje igual a **0.000002**.
+Para hacer el algoritmo de descenso de gradiente, se utilizó la fórmula dada en clase para el caso multivariado con una tasa de aprendizaje igual a **0.00000001**.
 
 $$
 h_w (x) = \sum_{i=1}^n w_i x_i
 $$
 
-A su vez, se hizo uso de la función de pérdida cuadrática $L^2(y,\hat{y}) = (y - \hat{y})^2$  tal como solicitó el enunciado. Para la condición de convergencia se seleccionó **500** como la cantidad máxima de iteraciones y un épsilon igual a **0.15**.
+A su vez, se hizo uso de la función de pérdida cuadrática $L^2(y,\hat{y}) = (y - \hat{y})^2$  tal como solicitó el enunciado. Para la condición de convergencia se seleccionó **1000** como la cantidad máxima de iteraciones y un épsilon igual a **0.5**.
 
 Se creó una función lineal de la forma $f(x) = w_1 x_1 + w_2 x_2 + w_0$ a manera de comprobar la funcionalidad del algoritmo. Para ella, se hizo uso de la librería *numpy* tanto para calcular los pesos iniciales como los atributos iniciales. Sin embargo, si se desea alterar el número de valores de la función lineal, se puede hacer a través del argumento *size* de *generate_linear_function()*, que se encarga de establecer el tamaño de la misma.
 
@@ -20,60 +20,40 @@ Se realizaron distintas corridas con $f(x)$. Además, se crearon otras funciones
 
 |                    | $X_2$ |$X_1$ |$X_0$ |
 |  :----:            |:----: |:----:|:----:|
-| Pesos reales       | -63   | 41   | -28  |
-| Pesos estimados    |-63.35 |40.62 |0.714 |
-| Porcentaje de error|0.56%  |0.92%|102.55%|
+| Pesos reales       | -97   | 20   | 82  |
+| Pesos estimados    |-96.26764464 | 20.65485227 |  0.41490047 |
+| Porcentaje de error|0.75500553 | 3.27426136 |99.49402381 |
 
-Tiempo de cálculo: 0.3s
+Tiempo de cálculo: 30.1s
 
 ![F1](/graficos/F1Lineal.png "F1")
 
 
 |                    | $X_2$ |$X_1$ |$X_0$ |
 |  :----:            |:----: |:----:|:----:|
-| Pesos reales       | -32   | -4   | -14  |
-| Pesos estimados    |-32.15 |-4.17 |0.56  |
-| Porcentaje de error|0.49% |4.32%|104.04%|
+| Pesos reales       | 68    |45    |  74  |
+| Pesos estimados    |68.59462628 | 45.62419242 | 2.053929  |
+| Porcentaje de error|0.87445041 | 1.38709426 | 97.22442027|
 
-Tiempo de cálculo: 0.3s
+Tiempo de cálculo: 22.9s
 
 ![F2](/graficos/F2lineal.png "F2")
 
 |                    | $X_3$  |$X_2$ | $X_1$| $X_0$ |
 |     :----:         | :----: |:----:|:----:| :----:|
-| Pesos reales       |-91     |96    | 27   | -77   |
-| Pesos estimados    |-89.83  |93.73 |26.92 | 0.77  |
-| Porcentaje de error|  1.29% | 2.36%| 0.31%|  101% |
+| Pesos reales       |-92 |-17 | -20 | 56  |
+| Pesos estimados    |-91.6563716 | -16.66415032 | -19.70170665 |  0.27869436  |
+| Porcentaje de error|  0.37350913 | 1.97558637 | 1.49146673 | 99.5023315 |
 
-Tiempo de cálculo: 0.4s
-
-![F3](/graficos/F3Lineal.png "F3")
-
-|                    | $X_3$  |$X_2$ | $X_1$| $X_0$ |
-| :----:             | :----: |:----:|:----:| :----:|
-| Pesos reales       |99      |-98   |-24   |  50   |
-| Pesos estimados    |99.41   |-97.76|-23.80| 1.39  |
-| Porcentaje de error|  0.42% | 0.24%| 0.84%| 97.21% |
-
-Tiempo de cálculo: 0.3s
-
-![F4](/graficos/F4Lineal.png "F4")
-
-|                    | $X_4$  |$X_3$ |$X_2$ | $X_1$ | $X_0$| 
-| :----:             | :----: |:----:|:----:| :----:|:----:|
-| Pesos reales       |  53    |-18   |16    |  -3   |  31  |
-| Pesos estimados    |  43.50 |-11.26|-21.89| -2.25 | 0.81 |
-| Porcentaje de error|  17.91%|37.46%|36.83%|   25% |97.37%|
-
-Tiempo de cálculo: 0.4s
+Tiempo de cálculo: 23s
 
 ![F5](/graficos/F5Lineal.png "F5")
 
 |                    | $X_4$  |$X_3$ |$X_2$ | $X_1$ | $X_0$| 
 | :----:             | :----: |:----:|:----:| :----:|:----:|
-| Pesos reales       |  97    | 72   | 22  |  42   |  1  |
-| Pesos estimados    |  96.82 |72.05 |22.15| 41.89 | 2.19 |
-| Porcentaje de error|  1.83% |7.10%| 6.86%| 2.45% |1.20%|
+| Pesos reales       | -55  | 87 |  -76 | -28 |  -69 | -57 |
+| Pesos estimados    |  -55.20641501 | 86.75577666 | -76.19729835 | -28.19550286 | -69.21579619 | 0.42607444 |
+| Porcentaje de error|   0.37530002 | 0.28071648 | 0.2596031 | 0.69822452 | 0.3127481 | 100.74749902 |
 
 Tiempo de cálculo: 0.3s
 
