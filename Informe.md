@@ -55,7 +55,7 @@ Tiempo de cálculo: 23s
 | Pesos estimados    |  -55.20641501 | 86.75577666 | -76.19729835 | -28.19550286 | -69.21579619 | 0.42607444 |
 | Porcentaje de error|   0.37530002 | 0.28071648 | 0.2596031 | 0.69822452 | 0.3127481 | 100.74749902 |
 
-Tiempo de cálculo: 0.3s
+Tiempo de cálculo: 29s
 
 ![F6](/graficos/F6Lineal.png "F6")
 
