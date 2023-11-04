@@ -215,16 +215,40 @@ Con un total de 12.4% de margen de error.
 ### 3.2 - Selección de hipótesis
 Finalmente, para seleccionar una hipótesis, se corrió nuevamente la función de descenso de gradiente, esta vez con $Y$ = *price* y $X$ con los atributos mencionados al final de la última sección.
 
-Los parámetros escogidos en esta oportunidad fueron los siguientes:
-* tasa de aprendizaje: **---**
+Se corrieron varias sesiones de entrenamiento. Para la primera sesión los parámetros escogidos fueron los siguientes:
+* tasa de aprendizaje: **0.0000015**
 * máximo número de iteraciones: **900.000**
-* epsilon: **0.015**
+* epsilon: **0.01**
 
-Así, se obtuvo a las 160.000 iteraciones, una convergencia con 0.999% de margen de error. A continuación se muestra su gráfica.
+Para la primera sesión, se obtuvo a las 160.000 iteraciones, una convergencia con 0.9999% de margen de error. A continuación se muestra la gráfica de esta sesión.
 
 ![Grafica1](/graficos/Grafica1.jpg "Grafica1")
 
-La corrida para obtener la hipótesis tomó 84min con 51 segundos.
+La sesión tomó 84min con 51 segundos.
+
+La segunda sesión se corrió con los siguientes parámnetos:
+* tasa de aprendizaje: **0.0000015**
+* máximo número de iteraciones: **90.000**
+* epsilon: **0.005**
+
+A las 90.000 iteraciones se obtuvo un margen de error de 0.675%. A continuación se muestra la gráfica de esta sesión.
+
+![Grafica2](/graficos/Grafica2.jpg "Grafica2")
+
+La sesión tomó 53min con 28 segundos.
+
+La última sesión de entrenamiento se realizó con los siguientes parámetros
+* tasa de aprendizaje: **0.0000013**
+* máximo número de iteraciones: **160.000**
+* epsilon: **0.005**
+
+A las 95.000 iteraciones se convergió a un margen de error de 0.4999%. A continuación se muestra la gráfica de esta sesión.
+
+![Grafica3](/graficos/Grafica3.png "Grafica3")
+
+La corrida tomó 48min con 11 segundos.
+
+El entrenamiento en total tardó 186min con 30 segundos. Los pesos de la hipótesis final se encuentran en el archivo `w.txt`
 
 ## 5 - Conclusiones
 En general, los resultados obtenidos al calcular el precio de vehículos fueron satisfactorios. Se estimaba un porcentaje más alto de error dado el margen de error de los atributos así como haciendo una comparación con el margen de error de las funciones lineales creadas al inicio del proyecto.
