@@ -37,7 +37,7 @@ Tiempo de cálculo: 0.3s
 
 Tiempo de cálculo: 0.3s
 
-![F2](/graficos/F2Lineal.png "F2")
+![F2](/graficos/F2lineal.png "F2")
 
 |                    | $X_3$  |$X_2$ | $X_1$| $X_0$ |
 |     :----:         | :----: |:----:|:----:| :----:|
